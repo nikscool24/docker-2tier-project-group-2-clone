@@ -23,7 +23,7 @@ jobs:
         
       - name: Build Docker Images
         run: docker build -t ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.project }}-${{ matrix.folders }} .
-        working-directory: ${{ matrix.folders }}
+        working-directory: ./${{ matrix.folders }}
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@v0.36.0
