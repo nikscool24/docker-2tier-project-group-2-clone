@@ -1,6 +1,11 @@
-const sh = require('shelljs');
-const upath = require('upath');
+import sh from 'shelljs';
+import upath from 'upath';
+import { fileURLToPath } from 'url';
+import path from 'path';
 
-const destPath = upath.resolve(upath.dirname(__filename), '../dist');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const destPath = upath.resolve(__dirname, '../dist');
 
 sh.rm('-rf', `${destPath}/*`);
