@@ -43,15 +43,15 @@ jobs:
           cache: 'npm'
           cache-dependency-path: ./frontend/package-lock.json
 
-      - name: Install & Build dependencies
+      - name: Install & Run ESLint & Prettier
         run: |
           npm install
-          npm ci
-          npm run build --if-present
-        working-directory: ./frontend
-
-      - name: Run ESLint & Prettier
-        run: |
           npm run format-fix
           npm run lint -- --fix
+        working-directory: ./frontend
+
+      - name: Build dependencies
+        run: |
+          npm ci
+          npm run build --if-present
         working-directory: ./frontend
