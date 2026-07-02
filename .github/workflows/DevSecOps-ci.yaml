@@ -15,3 +15,8 @@ jobs:
   Code-Quality: 
     uses: ./.github/workflows/code-quality.yaml
     secrets: inherit   
+
+  Docker-Scan:
+    needs: Code-Quality
+    uses: ./.github/workflows/docker-scan.yaml
+    secrets: inherit 
