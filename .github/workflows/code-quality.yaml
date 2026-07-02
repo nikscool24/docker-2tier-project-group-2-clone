@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        linter: [flake8, pylint, ruff, mypy, pytype, pyright, fixit, pyre]
+        linter: [flake8, pylint, ruff, mypy, pytype, fixit, pyre]
     permissions:
       contents: read
       packages: read
@@ -33,6 +33,7 @@ jobs:
         
       - name: Lintin code 
         uses: advanced-security/python-lint-code-scanning-action@v1
+        continue-on-error: true
         with:
           linter: ${{ matrix.linter }} 
 

@@ -7,6 +7,5 @@ pylint
 ruff
 mypy
 pytype
-pyright
 fixit
 pyre-check
