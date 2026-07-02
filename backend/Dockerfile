@@ -2,15 +2,15 @@ FROM python:3-alpine3.23
 
 WORKDIR /app
 
-# Install compiler toolchain and headers
-RUN apt-get update && apt-get install -y \
-    build-essential \
+# Install compiler toolchain and headers (Alpine uses apk)
+RUN apk add --no-cache \
+    build-base \
     gcc \
     g++ \
     make \
     libffi-dev \
-    python3-dev \
-    && rm -rf /var/lib/apt/lists/*
+    musl-dev \
+    python3-dev
 
 COPY requirements.txt .
 RUN pip install --upgrade pip setuptools wheel
