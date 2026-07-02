@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         folders: [backend,frontend]
-        project: [api,web]
+        # project: [api,web]
     steps:
       - name: code-checkout
         uses: actions/checkout@v7
@@ -22,13 +22,13 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}  
         
       - name: Build Docker Images
-        run: docker build -t ${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.project }}-${{ matrix.folders }} .
+        run: docker build -t ${{ vars.DOCKERHUB_USERNAME }}/myproject-${{ matrix.folders }} .
         working-directory: ./${{ matrix.folders }}
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: '${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.project }}-${{ matrix.folders }}'
+          image-ref: '${{ vars.DOCKERHUB_USERNAME }}/myproject-${{ matrix.folders }}'
           format: 'table'
           exit-code: '1'
           ignore-unfixed: false
