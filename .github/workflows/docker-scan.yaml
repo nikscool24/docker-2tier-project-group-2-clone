@@ -28,7 +28,6 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          trivy_version: 0.72.0
           image-ref: '${{ vars.DOCKERHUB_USERNAME }}/${{ matrix.project }}-${{ matrix.folders }}:${{ github.sha }}'
           format: 'table'
           exit-code: '1'
