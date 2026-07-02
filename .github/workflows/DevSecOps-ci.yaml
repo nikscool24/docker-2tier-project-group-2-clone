@@ -6,6 +6,11 @@ on:
   push:
     branches: [dev]
 
+permissions:
+  contents: read
+  packages: read
+  security-events: write    
+
 jobs:
   Code-Quality: 
     uses: ./.github/workflows/code-quality.yaml
