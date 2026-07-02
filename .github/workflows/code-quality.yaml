@@ -33,7 +33,24 @@ jobs:
         
       - name: Lintin code 
         uses: advanced-security/python-lint-code-scanning-action@v1
-        continue-on-error: true
         with:
           linter: ${{ matrix.linter }} 
 
+      - name: Set up Node.js 
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+          cache-dependency-path: ./frontend/package-lock.json
+
+      - name: Install & Build dependencies
+        run: |
+          npm ci 
+          npm run build --if-present
+        working-directory: ./frontend
+
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true  
