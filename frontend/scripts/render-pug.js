@@ -6,14 +6,16 @@ const sh = require('shelljs');
 const prettier = require('prettier');
 
 module.exports = async function renderPug(filePath) {
-    const destPath = filePath.replace(/src\/pug\//, 'dist/').replace(/\.pug$/, '.html');
+    const destPath = filePath
+        .replace(/src\/pug\//, 'dist/')
+        .replace(/\.pug$/, '.html');
     const srcPath = upath.resolve(upath.dirname(__filename), '../src');
 
     console.log(`### INFO: Rendering ${filePath} to ${destPath}`);
     const html = pug.renderFile(filePath, {
         doctype: 'html',
         filename: filePath,
-        basedir: srcPath
+        basedir: srcPath,
     });
 
     const destPathDirname = upath.dirname(destPath);
@@ -29,7 +31,7 @@ module.exports = async function renderPug(filePath) {
         proseWrap: 'preserve',
         endOfLine: 'lf',
         parser: 'html',
-        htmlWhitespaceSensitivity: 'ignore'
+        htmlWhitespaceSensitivity: 'ignore',
     });
 
     fs.writeFileSync(destPath, prettified);

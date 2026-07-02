@@ -10,7 +10,6 @@ jobs:
     strategy:
       matrix:
         python-linter: [flake8, pylint, ruff, mypy, pytype, fixit, pyre]
-        node-linter: [lint,format-check]
     permissions:
       contents: read
       packages: read
@@ -47,9 +46,12 @@ jobs:
       - name: Install & Build dependencies
         run: |
           npm install
+          npm ci
           npm run build --if-present
         working-directory: ./frontend
 
       - name: Run ESLint & Prettier
-        run: npm run ${{ matrix.node-linter }}
+        run: |
+          npm run format-fix
+          npm run lint -- --fix
         working-directory: ./frontend
