@@ -1,0 +1,12 @@
+---
+name: DevSecOps
+
+on:
+  workflow_dispatch:  
+  push:
+    branches: [dev]
+
+jobs:
+  Code-Quality: 
+    uses: ./.github/workflows/code-quality.yaml
+    secrets: inherit   
