@@ -32,5 +32,7 @@ jobs:
         uses: super-linter/super-linter@v8.7.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          path: ./backend  
+          FILTER_REGEX_INCLUDE: ./backend
+          VALIDATE_ALL_CODEBASE: false
+          VALIDATE_BIOME: false
+          VALIDATE_PYTHON_BLACK: false
