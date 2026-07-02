@@ -46,7 +46,7 @@ jobs:
 
       - name: Install & Build dependencies
         run: |
-          npm ci 
+          npm install
           npm run build --if-present
         working-directory: ./frontend
 
