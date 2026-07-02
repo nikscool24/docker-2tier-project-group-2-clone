@@ -8,16 +8,22 @@ const sass = require('sass');
 const sh = require('shelljs');
 
 const stylesPath = '../src/scss/styles.scss';
-const destPath = upath.resolve(
-    upath.dirname(__filename),
-    '../dist/css/styles.css'
-);
+const destPath = upath.resolve(__dirname, '../dist/css/styles.css');
+
+// Define entryPoint BEFORE using it
+const entryPoint = `/*!
+* Start Bootstrap - ${packageJSON.title} v${packageJSON.version} (${packageJSON.homepage})
+* Copyright 2013-${new Date().getFullYear()} ${packageJSON.author}
+* Licensed under ${packageJSON.license} (https://github.com/StartBootstrap/${packageJSON.name}/blob/master/LICENSE)
+*/
+@import "${stylesPath}"
+`;
 
 module.exports = function renderSCSS() {
     const results = sass.renderSync({
         data: entryPoint,
         includePaths: [
-            upath.resolve(upath.dirname(__filename), '../node_modules'),
+            upath.resolve(__dirname, '../node_modules'),
         ],
     });
 
@@ -35,11 +41,3 @@ module.exports = function renderSCSS() {
             fs.writeFileSync(destPath, result.css.toString());
         });
 };
-
-const entryPoint = `/*!
-* Start Bootstrap - ${packageJSON.title} v${packageJSON.version} (${packageJSON.homepage})
-* Copyright 2013-${new Date().getFullYear()} ${packageJSON.author}
-* Licensed under ${packageJSON.license} (https://github.com/StartBootstrap/${packageJSON.name}/blob/master/LICENSE)
-*/
-@import "${stylesPath}"
-`;

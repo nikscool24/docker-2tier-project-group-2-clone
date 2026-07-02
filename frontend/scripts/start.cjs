@@ -1,15 +1,17 @@
+'use strict';
+
 const concurrently = require('concurrently');
 const upath = require('upath');
 
 const browserSyncPath = upath.resolve(
-    upath.dirname(__filename),
+    __dirname,
     '../node_modules/.bin/browser-sync'
 );
 
 concurrently(
     [
         {
-            command: 'node scripts/sb-watch.js',
+            command: 'node scripts/sb-watch.cjs', // ✅ updated extension
             name: 'SB_WATCH',
             prefixColor: 'bgBlue.bold',
         },
