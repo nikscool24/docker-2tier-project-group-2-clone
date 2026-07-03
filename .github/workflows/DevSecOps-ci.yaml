@@ -20,3 +20,7 @@ jobs:
     needs: Code-Quality
     uses: ./.github/workflows/docker-scan.yaml
     secrets: inherit 
+
+  SonarQube:
+    uses: ./.github/workflows/Sonarqube.yaml
+    secrets: inherit
