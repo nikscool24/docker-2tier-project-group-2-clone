@@ -9,7 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        folders: [backend,frontend]
         python-linter: [flake8, pylint, ruff, mypy, pytype, fixit, pyre]
     permissions:
       contents: read
@@ -59,13 +58,17 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
 
-      - name: Run Snyk test
-        run: snyk test
-        working-directory: ./${{ matrix.folders }}
+      - name: Run Snyk test & Monitor project in Snyk-Backend
+        run: |
+          snyk test
+          snyk monitor
+        working-directory: ./backend
 
-      - name: Monitor project in Snyk
-        run: snyk monitor  
-        working-directory: ./${{ matrix.folders }}
+      - name: Run Snyk test & Monitor project in Snyk-Frontend
+        run: |
+          snyk test
+          snyk monitor
+        working-directory: ./frontend
 
       - name: Build dependencies
         run: |
