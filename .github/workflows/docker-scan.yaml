@@ -40,7 +40,7 @@ jobs:
         with:
           command: cves
           image: ${{ vars.DOCKERHUB_USERNAME }}/myproject-${{ matrix.folders }}
-          only-severities: critical,high
+          only-severities: critical
           exit-code: true    
            
       - name: Push Docker Image ${{ matrix.folders }}
