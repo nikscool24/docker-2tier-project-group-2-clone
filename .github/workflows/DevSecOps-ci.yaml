@@ -19,7 +19,7 @@ jobs:
   
   GitLeaks-Scanner:
     needs: Code-Quality
-    uses: ./.github/workflows/gitleaks.yaml
+    uses: ./.github/workflows/GitLeaks.yaml
     secrets: inherit
 
   CodeQL-Scan:
