@@ -15,12 +15,23 @@ jobs:
   Code-Quality: 
     uses: ./.github/workflows/code-quality.yaml
     secrets: inherit   
-
-  Docker-Scan:
+ 
+  
+  GitLeaks-Scanner:
     needs: Code-Quality
-    uses: ./.github/workflows/docker-scan.yaml
-    secrets: inherit 
+    uses: ./.github/workflows/gitleaks.yaml 
+    secrets: inherit
 
   SonarQube:
+    needs: GitLeaks-Scanner
     uses: ./.github/workflows/Sonarqube.yaml
     secrets: inherit
+
+  Docker-Scan:
+    needs: SonarQube
+    uses: ./.github/workflows/docker-scan.yaml
+    secrets: inherit
+
+    
+    
+   
