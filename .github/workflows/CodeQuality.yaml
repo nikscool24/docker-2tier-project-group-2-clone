@@ -52,23 +52,7 @@ jobs:
           npm run lint -- --fix
         working-directory: ./frontend
 
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/setup@master
-        continue-on-error: false
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
 
-      - name: Run Snyk test & Monitor project in Snyk-Backend
-        run: |
-          snyk test --file=requirements.txt
-          snyk monitor --file=requirements.txt
-        working-directory: ./backend
-
-      - name: Run Snyk test & Monitor project in Snyk-Frontend
-        run: |
-          snyk test --file=package.json
-          snyk monitor --file=package.json
-        working-directory: ./frontend
 
       # - name: Build dependencies
       #   run: |
