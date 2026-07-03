@@ -18,26 +18,26 @@ jobs:
  
   
   GitLeaks-Scanner:
-    # needs: Code-Quality
-    uses: ./.github/workflows/GitLeaks.yaml
+    needs: Code-Quality
+    uses: ./.github/workflows/gitleaks.yaml
     secrets: inherit
 
   CodeQL-Scan:
-    # needs: GitLeaks-Scanner
+    needs: GitLeaks-Scanner
     uses: ./.github/workflows/CodeQL.yaml
     secrets: inherit
 
   SonarQube:
-    # needs: CodeQL-Scan
+    needs: CodeQL-Scan
     uses: ./.github/workflows/Sonarqube.yaml
     secrets: inherit
 
   Snyk-Scanner:
-    # needs: SonarQube
+    needs: SonarQube
     uses: ./.github/workflows/Snyk.yaml
     secrets: inherit
     
   Docker-Scan:
-    # needs: Snyk-Scanner
+    needs: Snyk-Scanner
     uses: ./.github/workflows/DockerScan.yaml
     secrets: inherit
