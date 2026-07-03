@@ -7,9 +7,6 @@ on:
 jobs:
   sonarqube:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        folders: [backend,frontend]
     steps:
       - name: code-checkout
         uses: actions/checkout@v7
@@ -20,4 +17,5 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v8.2.0
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          
+          SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
+        
