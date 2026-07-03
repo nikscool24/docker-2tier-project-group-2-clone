@@ -12,7 +12,7 @@ docker-compose up --build
 ## 🌐 Access
 
 - Frontend: http://localhost
-- Backend: http://localhost:5000
+- Backend: http://localhost:5000 
 
 ## 🛑 Stop
 ```bash
