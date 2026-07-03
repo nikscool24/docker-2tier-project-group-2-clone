@@ -37,3 +37,8 @@ jobs:
     needs: SonarQube
     uses: ./.github/workflows/DockerScan.yaml
     secrets: inherit
+
+  # Deploy-Application:
+  #   needs: Docker-Scan
+  #   uses: ./.github/workflows/cd.yaml
+  #   secrets: inherit

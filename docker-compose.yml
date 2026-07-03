@@ -1,14 +1,14 @@
 # docker-compose.yml
 services:
   backend:
-    build: ./backend
+    image: nikscool24/myproject-backend:latest
     container_name: backend
     ports:
       - "5000:5000"   # host:container (changed from 5000:8081)
     restart: always
 
   frontend:
-    build: ./frontend
+    image: nikscool24/myproject-frontend:latest
     container_name: frontend
     ports:
       - "80:80"       # host:container
