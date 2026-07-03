@@ -41,7 +41,3 @@ jobs:
     needs: Snyk-Scanner
     uses: ./.github/workflows/DockerScan.yaml
     secrets: inherit
-
-    
-    
-   

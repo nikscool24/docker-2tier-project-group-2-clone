@@ -5,7 +5,7 @@ on:
   workflow_call:
 
 jobs:
-  code-quality:
+  codeql-quality:
     runs-on: ubuntu-latest
     permissions:
       contents: read
