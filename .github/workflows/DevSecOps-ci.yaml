@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   Code-Quality: 
-    uses: ./.github/workflows/Code-Quality.yaml
+    uses: ./.github/workflows/CodeQuality.yaml
     secrets: inherit   
  
   
@@ -39,7 +39,7 @@ jobs:
     
   Docker-Scan:
     needs: Snyk-Scanner
-    uses: ./.github/workflows/Docker-Scan.yaml
+    uses: ./.github/workflows/DockerScan.yaml
     secrets: inherit
 
     
