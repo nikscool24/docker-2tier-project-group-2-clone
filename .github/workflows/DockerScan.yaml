@@ -7,6 +7,10 @@ on:
 jobs:
   Image-scanner:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      security-events: write
     strategy:
       matrix:
         folders: [backend,frontend]
