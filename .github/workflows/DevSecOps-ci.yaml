@@ -32,12 +32,8 @@ jobs:
     uses: ./.github/workflows/Sonarqube.yaml
     secrets: inherit
 
-  Snyk-Scanner:
-    needs: SonarQube
-    uses: ./.github/workflows/Snyk.yaml
-    secrets: inherit
     
   Docker-Scan:
-    needs: Snyk-Scanner
+    needs: SonarQube
     uses: ./.github/workflows/DockerScan.yaml
     secrets: inherit
