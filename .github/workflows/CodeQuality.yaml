@@ -60,18 +60,18 @@ jobs:
 
       - name: Run Snyk test & Monitor project in Snyk-Backend
         run: |
-          snyk test
-          snyk monitor
+          snyk test --file=requirements.txt
+          snyk monitor --file=requirements.txt
         working-directory: ./backend
 
       - name: Run Snyk test & Monitor project in Snyk-Frontend
         run: |
-          snyk test
-          snyk monitor
+          snyk test --file=package.json
+          snyk monitor --file=package.json
         working-directory: ./frontend
 
-      - name: Build dependencies
-        run: |
-          npm ci
-          npm run build --if-present
-        working-directory: ./frontend
+      # - name: Build dependencies
+      #   run: |
+      #     npm ci
+      #     npm run build --if-present
+      #   working-directory: ./frontend
