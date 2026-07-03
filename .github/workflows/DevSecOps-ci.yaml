@@ -13,23 +13,33 @@ permissions:
 
 jobs:
   Code-Quality: 
-    uses: ./.github/workflows/code-quality.yaml
+    uses: ./.github/workflows/Code-Quality.yaml
     secrets: inherit   
  
   
   GitLeaks-Scanner:
     needs: Code-Quality
-    uses: ./.github/workflows/gitleaks.yaml 
+    uses: ./.github/workflows/GitLeaks.yaml
+    secrets: inherit
+
+  CodeQL-Scan:
+    needs: GitLeaks-Scanner
+    uses: ./.github/workflows/CodeQL.yaml
     secrets: inherit
 
   SonarQube:
-    needs: GitLeaks-Scanner
+    needs: CodeQL-Scan
     uses: ./.github/workflows/Sonarqube.yaml
     secrets: inherit
 
-  Docker-Scan:
+  Snyk-Scanner:
     needs: SonarQube
-    uses: ./.github/workflows/docker-scan.yaml
+    uses: ./.github/workflows/Snyk.yaml
+    secrets: inherit
+    
+  Docker-Scan:
+    needs: Snyk-Scanner
+    uses: ./.github/workflows/Docker-Scan.yaml
     secrets: inherit
 
     

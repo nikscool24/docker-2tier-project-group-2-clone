@@ -1,0 +1,32 @@
+---
+name: Snyk-Scanner
+
+on:
+  workflow_call:
+
+jobs:
+  Snyk-quality:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      security-events: write
+    steps:
+      - name: code-checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/setup@master
+        continue-on-error: false
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}    
+
+      - name: Run Snyk test
+        run: snyk test
+        # working-directory: ./
+
+      - name: Monitor project in Snyk
+        run: snyk monitor  
+        # working-directory: ./  

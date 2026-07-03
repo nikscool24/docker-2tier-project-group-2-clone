@@ -1,0 +1,26 @@
+---
+name: CodeQL-Scan
+
+on:
+  workflow_call:
+
+jobs:
+  code-quality:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+      security-events: write
+    steps:
+      - name: code-checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: javascript-typescript,python
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4  
